@@ -8,6 +8,9 @@ var express = require('express');
 // 引入 swig 模板引擎模块
 var swig = require('swig');
 
+// 引入 mongoose 模块
+var mongoose = require('mongoose');
+
 // 创建 app 应用
 var app = express();
 
@@ -35,6 +38,9 @@ app.use('/api', require('./routers/api'));
 
 // 配置前台管理模块
 app.use('/', require('./routers/main'));
+
+// 连接数据库
+mongoose.connect();
 
 // 监听http请求
 app.listen(8081);
