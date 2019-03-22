@@ -4,7 +4,7 @@
 
 项目结构：
 
-db             数据库存储目录
+db             数据库存储目录\n
 models         数据库模型文件目录
 node_modules   node第三方模块目录
 public         公共文件目录（css,js,image...）
