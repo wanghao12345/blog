@@ -1,0 +1,92 @@
+html,body{
+  background-color: #eeeeee;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  box-shadow:0 0 0 60px #fff inset;
+  -webkit-text-fill-color: #878787;
+}
+
+.container{
+  width: 100%;
+  height: 500px;
+  display: flex;
+  display: -webkit-flex;
+}
+.container-left{
+  flex: 1;
+}
+.container-right{
+  width: 300px;
+  height: 100%;
+}
+.container-right .card{
+  width: 100%;
+  height: 200px;
+  margin: 0 auto;
+}
+
+/*右侧模块框*/
+.b-modular-box{
+  width: 300px;
+  background-color: white;
+  box-sizing: border-box;
+  padding: 0 20px 20px 20px;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+.b-modular-name{
+  width: 100%;
+  height: 40px;
+  border-bottom: 1px solid #eaeaea;
+  line-height: 40px;
+}
+.b-modular-name span{
+  height: 40px;
+  border-bottom: 1px solid #28a745;
+  display: inline-block;
+  line-height: 50px;
+  padding-right: 20px;
+}
+.b-modular-cont{
+  width: 100%;
+}
+.b-modular-cont .row{
+  width: 100%;
+  margin: 10px 0;
+}
+.b-modular-cont .row label{
+  width: 56px;
+  text-align: right;
+  line-height: 35px;
+  font-size: 14px;
+}
+.b-modular-cont .row input{
+  border: 1px solid #eee;
+  height: 35px;
+  box-sizing: border-box;
+  padding-left: 8px;
+  width: 204px;
+  font-size: 15px;
+}
+.b-modular-cont .row p{
+  font-size: 15px;
+}
+.b-modular-box input.submit-btn{
+  margin-left: 56px;
+  background: #28a745;
+  color: white;
+}
+.b-modular-cont .row-right{
+  width: 100%;
+}
+.b-modular-cont .row-right p{
+  width: 100%;
+  font-size: 13px;
+  text-align: right;
+}
+.b-modular-cont .row p.warning{
+  color: red;
+  font-size: 15px;
+}

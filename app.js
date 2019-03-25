@@ -11,6 +11,15 @@ var swig = require('swig');
 // 引入 mongoose 模块
 var mongoose = require('mongoose');
 
+// 引入 body-parser 模块（用来处理post提交过来的数据）
+var bodyParser = require('body-parser');
+
+// 引入 cookies 模块
+var Cookies = require('cookies');
+
+// 引入 user model 模块
+var User = require('./models/User');
+
 // 创建 app 应用
 var app = express();
 
@@ -26,6 +35,32 @@ app.set('view engine', 'html');
 
 // 4.开发过程中，需要取消模板缓存
 swig.setDefaults({cache: false});
+
+// 配置body-parser
+app.use(bodyParser.urlencoded({extended: true}));
+
+// 配置cookie
+app.use(function (req, res, next) {
+  req.cookies = new Cookies(req, res);
+  req.userInfo = {};
+
+  // 解析登录用户的cookie信息
+  if (req.cookies.get('userInfo')) {
+    try {
+      req.userInfo = JSON.parse(req.cookies.get('userInfo'));
+
+      // 获取当前登录用户的类型，是否是管理员
+      User.findById(req.userInfo._id).then(function (userInfo) {
+        req.userInfo.isAdmin = Boolean(userInfo.isAdmin);
+        next();
+      });
+    } catch (e) {
+      next();
+    }
+  } else {
+    next();
+  }
+});
 
 // 配置静态文件
 app.use('/public', express.static(__dirname + '/public'));
