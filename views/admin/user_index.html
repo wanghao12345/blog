@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+{% block main %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">管理首页</a></li>
+        <li class="breadcrumb-item active" aria-current="page">用户列表</li>
+    </ol>
+</nav>
+<table class="table table-hover table-bordered">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>用户名</th>
+        <th>密码</th>
+        <th>是否是管理员</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+    <tr>
+        <td>{{user._id.toString()}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.password}}</td>
+        <td>{% if user.isAdmin %} 是 {% endif %}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
