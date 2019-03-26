@@ -192,7 +192,6 @@ router.get('/category/edit', function (req, res, next) {
   });
 });
 
-
 /**
  * 分类修改保存
  */
@@ -221,14 +220,13 @@ router.post('/category/edit', function (req, res, next) {
       } else { // 用户修改
         // 要修改的分类名称是否已经再数据库中存在
         return Category.findOne({
-          _id: id,
           name: name
         });
       }
     }
   }).then(function (sameCategory) {
     if (sameCategory) {
-      res.render('/admin/error', {
+      res.render('admin/error', {
         userInfo: req.userInfo,
         message: '数据库中已经存在同名分类'
       });
@@ -242,7 +240,7 @@ router.post('/category/edit', function (req, res, next) {
         console.log(status);
       })
     }
-  }).then(function () {
+  }).then(function (result) {
     res.render('admin/success', {
       userInfo: req.userInfo,
       message: '修改成功',
@@ -251,16 +249,36 @@ router.post('/category/edit', function (req, res, next) {
   });
 });
 
-
-
-
 /**
  * 分类删除
  */
-router.get('/admin/category/delete', function (req, res, next) {
-  res.render('admin/category_delete', {
-    userInfo: req.userInfo
-  });
+router.get('/category/delete', function (req, res, next) {
+  var id = req.query.id || '';
+
+  if (id === '') {
+    res.render('admin/error', {
+      userInfo: req.userInfo,
+      message: '该分类信息不存在'
+    })
+  }
+
+  Category.remove({
+    _id: id
+  }).then(function (err) {
+    if (err) {
+      res.render('admin/success', {
+        userInfo: req.userInfo,
+        message: '删除成功',
+        url: '/admin/category'
+      })
+    } else {
+      res.render('admin/error', {
+        userInfo: req.userInfo,
+        message: '删除失败'
+      })
+    }
+
+  })
 });
 
 
