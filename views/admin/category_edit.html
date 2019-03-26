@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block main %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">管理首页</a></li>
+    <li class="breadcrumb-item active" aria-current="page">分类编辑</li>
+  </ol>
+</nav>
+<h3 style="height: 30px;">分类编辑 - {{category.name}}</h3>
+
+<form action="/admin/category/edit?id={{category._id.toString()}}" method="post">
+  <div class="form-group">
+    <label for="name">分类名称</label>
+    <input type="text" class="form-control" value="{{category.name}}" name="name" id="name" aria-describedby="emailHelp" placeholder="请输入分类名称">
+  </div>
+  <button type="submit" class="btn btn-primary">提交</button>
+</form>
+
+
+
+{% endblock %}

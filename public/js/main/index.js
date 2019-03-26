@@ -51,7 +51,7 @@ function registerRequest($registerBox, $loginBox) {
         setTimeout(function () {
           $loginBox.show();
           $registerBox.hide();
-        }, 1000);
+        }, 500);
       }
     }
   })
@@ -74,7 +74,7 @@ function loginRequest($loginBox, $userInfo) {
       if (!result.code) { // 登录成功，显示用户信息
         setTimeout(function () {
           window.location.reload();
-        }, 1000)
+        }, 500)
       }
     }
   });

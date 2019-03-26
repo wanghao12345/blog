@@ -1,35 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>后台管理</title>
-    <link href="/public/css/lib/bootstrap.min.css" rel="stylesheet">
-    <link href="/public/css/share/reset.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>后台管理</title>
+  <link href="/public/css/lib/bootstrap.min.css" rel="stylesheet">
+  <link href="/public/css/share/reset.css" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-bottom: 1px solid #ded9d9;">
-    <a class="navbar-brand" href="/admin">后台管理</a>
-    <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto navbar-left">
-            <li class="nav-item active">
-                <a class="nav-link" href="/admin/user">用户管理</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav navbar-right">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    {{ userInfo.username }}
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown3" style="min-width: 10px !important;right: 0;">
-                    <a class="dropdown-item" href="#">退出</a>
-                </div>
-            </li>
-        </ul>
-    </div>
+  <a class="navbar-brand" href="/admin">后台管理</a>
+  <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto navbar-left">
+      <li class="nav-item active">
+        <a class="nav-link" href="/admin/user">用户管理</a>
+      </li>
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="#" id="categoryDropDown" role="button" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+          分类管理
+        </a>
+        <div class="dropdown-menu" aria-labelledby="categoryDropDown">
+          <a class="dropdown-item" href="/admin/category">分类首页</a>
+          <a class="dropdown-item" href="/admin/category/add">添加分类</a>
+        </div>
+      </li>
+
+    </ul>
+    <ul class="navbar-nav navbar-right">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+          {{ userInfo.username }}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown3" style="min-width: 10px !important;right: 0;">
+          <a class="dropdown-item" href="#">退出</a>
+        </div>
+      </li>
+    </ul>
+  </div>
 </nav>
 <div class="container-fluid" style="margin: 15px 0;">
-   {% block main %} {% endblock %}
+  {% block main %} {% endblock %}
 </div>
 </body>
 <script src="/public/js/lib/jquery-3.2.1.min.js"></script>

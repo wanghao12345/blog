@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% block main %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">管理首页</a></li>
+    <li class="breadcrumb-item active" aria-current="page">错误提示</li>
+  </ol>
+</nav>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">错误提示</h5>
+    <p class="card-text">{{message}}</p>
+
+    {% if url %}
+    <a href="{{url}}">点击这里跳转</a>
+    {% else %}
+    <a href="javascript:window.history.back();">返回上一页</a>
+    {% endif %}
+
+  </div>
+</div>
+
+{% endblock %}

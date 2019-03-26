@@ -1,0 +1,13 @@
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-between">
+    <li class="page-item">
+      <a class="page-link" href="{{pageUrl}}/?page={{page-1}}">&larr;上一页</a>
+    </li>
+    <li class="page-item" style="display: flex;align-items: center">
+      一共 {{count}} 条数据，每页显示 {{limit}} 条数据，一共 {{pages}} 页，当前第 {{page}} 页
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="{{pageUrl}}/?page={{page+1}}">下一页&rarr;</a>
+    </li>
+  </ul>
+</nav>
