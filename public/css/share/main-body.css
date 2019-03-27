@@ -8,6 +8,15 @@ input:-webkit-autofill:focus {
   -webkit-text-fill-color: #878787;
 }
 
+.main-bg-color{
+  background-color: #d27d7d!important;
+}
+.main-text-color{
+  color: #d27d7d!important;
+}
+.main-boder-color{
+  border-color: #d27d7d!important;
+}
 .container{
   width: 100%;
   height: 500px;
@@ -16,6 +25,8 @@ input:-webkit-autofill:focus {
 }
 .container-left{
   flex: 1;
+  box-sizing: border-box;
+  padding-right: 10px;
 }
 .container-right{
   width: 300px;
@@ -27,6 +38,94 @@ input:-webkit-autofill:focus {
   margin: 0 auto;
 }
 
+/*文章板块*/
+article.article-item{
+  background-color: #fff;
+  padding: 20px 15px 10px 20px;
+  margin-bottom: 10px;
+  position: relative;
+  clear: both;
+}
+article.article-item a{
+  text-decoration: none;
+}
+article.article-item header.article-top{
+  margin: 0 10px 15px 0;
+  position: relative;
+}
+article.article-item header.article-top .article-type{
+  margin-right: 5px;
+  position: absolute;
+  background: #db4659;
+  top: -25px;
+  left: -30px;
+  color: white;
+  font-size: 13px;
+  width: 80px;
+  height: 25px;
+  line-height: 25px;
+  text-indent: 10px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+article.article-item header.article-top .article-type i{
+  display: block;
+  position: absolute;
+  top: 25px;
+  border-left: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid #db4659;
+  border-right: 5px solid #db4659;
+}
+article.article-item .article-content .article-title{
+  font-size: 20px;
+  font-weight: 400;
+  position: relative;
+  top: 1px;
+  line-height: 25px;
+  margin: 0 10px 10px 10px;
+}
+article.article-item .article-content{
+  overflow: hidden;
+  height: 123px;
+}
+article.article-item .article-content .article-img{
+  float: left;
+  margin: 0 20px 0 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  display: table;
+}
+article.article-item .article-content .article-img img{
+
+}
+article.article-item .article-content .article-description{
+  color: #777;
+  line-height: 24px;
+  margin-bottom: 0;
+  font-style: normal;
+  height: 100%;
+}
+article.article-item .article-content .article-description-content{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  line-height: 22px;
+  color: grey;
+}
+
+article.article-item .article-bottom{
+  width: 100%;
+  line-height: 50px;
+  text-align: right;
+}
+article.article-item .article-bottom a{
+  margin-right: 20px;
+  font-size: 13px;
+  color: #949494;
+}
 /*右侧模块框*/
 .b-modular-box{
   width: 300px;
