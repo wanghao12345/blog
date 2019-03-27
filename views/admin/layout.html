@@ -5,6 +5,8 @@
   <title>后台管理</title>
   <link href="/public/css/lib/bootstrap.min.css" rel="stylesheet">
   <link href="/public/css/share/reset.css" rel="stylesheet">
+  <script src="/public/js/lib/jquery-3.2.1.min.js"></script>
+  <script src="/public/js/lib/bootstrap.min.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-bottom: 1px solid #ded9d9;">
@@ -24,7 +26,16 @@
           <a class="dropdown-item" href="/admin/category/add">添加分类</a>
         </div>
       </li>
-
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="#" id="contentDropDown" role="button" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+          内容管理
+        </a>
+        <div class="dropdown-menu" aria-labelledby="contentDropDown">
+          <a class="dropdown-item" href="/admin/content">内容首页</a>
+          <a class="dropdown-item" href="/admin/content/add">添加内容</a>
+        </div>
+      </li>
     </ul>
     <ul class="navbar-nav navbar-right">
       <li class="nav-item dropdown">
@@ -43,6 +54,4 @@
   {% block main %} {% endblock %}
 </div>
 </body>
-<script src="/public/js/lib/jquery-3.2.1.min.js"></script>
-<script src="/public/js/lib/bootstrap.min.js"></script>
 </html>

@@ -7,6 +7,9 @@ var User = require('../models/User');
 // 引入 category model模块
 var Category = require('../models/Category');
 
+// 引入 content model 模块
+var Content = require('../models/Content');
+
 // 使用express的Router()路由方法
 var router = express.Router();
 
@@ -77,12 +80,9 @@ router.get('/user', function (req, res, next) {
 });
 
 /**
- * 分类首页
- * @type {Router|router}
+ * 分类管理首页
  */
 router.get('/category', function (req, res, next) {
-
-
 
   var page = Number(req.query.page || 1);
   var limit = 10;
@@ -279,5 +279,106 @@ router.get('/category/delete', function (req, res, next) {
     }
   })
 });
+
+/**
+ * 内容管理首页
+ */
+router.get('/content', function (req, res, next) {
+  var category = req.query.category || '';
+
+  var query = {};
+  if (category !== '') {
+    query.category = category;
+  }
+
+  var page = Number(req.query.page || 1);
+  var limit = 10;
+  var pages = 0;
+
+  Content.count(query).then(function (count) {
+    // 计算总页数
+    pages = Math.ceil(count / limit);
+    // 取值不能超过pages
+    page = Math.min(page, pages);
+    // 取值不能低于1
+    page = Math.max(page, 1);
+
+    // 忽略条数
+    var skip = (page - 1) * limit;
+
+    Content.find(query).limit(limit).skip(skip).populate({
+      path: 'category',
+      select: 'name',
+      model: 'Category'
+    }).then(function (contents) {
+      // 查询分类
+      Category.find().sort({_id: -1}).then(function (categories) {
+        res.render('admin/content_index', {
+          userInfo: req.userInfo,
+          categories: categories,
+          contents: contents,
+          // 分页参数
+          page: page,
+          pages: pages,
+          limit: limit,
+          count: count,
+          pageUrl: '/admin/content'
+        });
+      });
+    });
+  });
+});
+
+/**
+ * 内容添加
+ */
+router.get('/content/add', function (req, res, next) {
+  Category.find().sort({_id: -1}).then(function (categories) {
+    res.render('admin/content_add', {
+      userInfo: req.userInfo,
+      categories: categories
+    });
+  });
+});
+
+/**
+ * 内容增加保存
+ */
+router.post('/content/add', function (req, res, next) {
+  var category = req.body.category || '';
+  var title = req.body.title || '';
+  var description = req.body.description;
+  var content = req.body.content;
+
+  if (category === '') {
+    res.render('admin/error', {
+      userInfo: req.userInfo,
+      message: '分类信息不能为空'
+    })
+  }
+
+  if (title === '') {
+    res.render('admin/error', {
+      userInfo: req.userInfo,
+      message: '标题不能为空'
+    })
+  }
+
+  new Content({
+    category: category,
+    title: title,
+    description: description,
+    content: content
+  }).save(function (result) {
+    res.json({
+      code: 0,
+      message: '内容保存成功'
+    })
+  })
+
+});
+
+
+
 
 module.exports = router;

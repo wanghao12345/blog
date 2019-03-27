@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+{% block main %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">管理首页</a></li>
+    <li class="breadcrumb-item active" aria-current="page">内容添加</li>
+  </ol>
+</nav>
+<h3 style="height: 30px;">内容添加</h3>
+  <div class="content_add" id="content_add">
+    <div class="form-group">
+      <label for="category">分类：</label>
+      <select class="form-control" name="category" id="category">
+        {% for category in categories %}
+        <option value="{{category._id.toString()}}">{{category.name}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="title">标题：</label>
+      <input type="text" class="form-control" autocomplete="off" name="title" id="title" aria-describedby="emailHelp" placeholder="请输入分类名称">
+    </div>
+    <div class="form-group">
+      <label for="description">简介：</label>
+      <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="content">内容：</label>
+      <textarea class="form-control" name="content" id="content" rows="3"></textarea>
+    </div>
+    <button type="submit" id="submit" class="btn btn-primary">提交</button>
+  </div>
+<script src="/public/js/lib/kindeditor/kindeditor-all.js"></script>
+<script src="/public/js/lib/kindeditor/lang/zh-CN.js"></script>
+<script>
+  KindEditor.ready(function (K) {
+    var options = {
+      minHeight: 300
+    };
+    window.editor = K.create('#content', options);
+  });
+</script>
+<script src="/public/js/admin/content/add.js"></script>
+{% endblock %}
