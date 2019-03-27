@@ -1,4 +1,5 @@
 $(function () {
+
   var $loginBox = $('#login-modular');
   var $registerBox = $('#register-modular');
   var $userInfo = $('#userInfo-modular');
@@ -30,6 +31,23 @@ $(function () {
     logoutRequest();
   });
 
+  var page = 1;
+  // 获取首页文章列表
+  getHomeArticleList(page);
+  window.onscroll = function () {
+    // 滚动条距离顶部的距离
+    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    // 可视区高度
+    var windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+    // 滚动条总高度
+    var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+
+    if (scrollTop + windowHeight === scrollHeight) {
+      page = page + 1;
+      // 获取首页文章列表
+      getHomeArticleList(page);
+    }
+  }
 });
 
 /**
@@ -93,4 +111,21 @@ function logoutRequest() {
       }
     }
   });
+}
+
+/**
+ * 获取首页文章列表
+ */
+function getHomeArticleList(page) {
+  $.ajax({
+    type: 'get',
+    url: '/api/home/article/list',
+    data: {
+      page: page
+    },
+    dataType: 'json',
+    success: function (result) {
+      console.log(result);
+    }
+  })
 }

@@ -4,6 +4,9 @@ var express = require('express');
 // 引入 user 用户model模型
 var User = require('../models/User');
 
+// 引入 content model模型
+var Content = require('../models/Content');
+
 // 使用express的Router()路由方法
 var router = express.Router();
 
@@ -142,6 +145,20 @@ router.post('/user/login', function (req, res, next) {
 router.get('/user/logout', function (req, res) {
   req.cookies.set('userInfo', null);
   res.json(responseData);
+});
+
+/**
+ * 获取主页文章列表
+ */
+router.get('/home/article/list', function (req, res, next) {
+  var page = req.body.page;
+  var limit = 10;
+  Content.find().limit(limit).skip((page - 1) * limit).then(function (contents) {
+    res.json({
+      code: 0,
+      data: contents
+    })
+  });
 });
 
 module.exports = router;
