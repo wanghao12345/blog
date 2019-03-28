@@ -121,8 +121,9 @@ article.article-item .article-content .article-description-content{
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
   overflow: hidden;
-  line-height: 22px;
-  color: grey;
+  line-height: 20px;
+  font-size: 14px;
+  color: #526163;
 }
 
 article.article-item .article-bottom{

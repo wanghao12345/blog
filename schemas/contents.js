@@ -1,6 +1,9 @@
 // 引入 mongoose 模块
 var mongoose = require('mongoose');
 
+// 引入 moment 模块
+var moment = require('moment');
+
 // 内容的表结构
 module.exports = new mongoose.Schema({
   // 关联字段 - 分类的id
@@ -30,6 +33,12 @@ module.exports = new mongoose.Schema({
 
   // 阅读量
   views: {
+    type: Number,
+    default: 0
+  },
+
+  // 喜欢人数
+  loves: {
     type: Number,
     default: 0
   },
