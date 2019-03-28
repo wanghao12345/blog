@@ -153,7 +153,20 @@ router.get('/user/logout', function (req, res) {
 router.get('/home/article/list', function (req, res, next) {
   var page = req.query.page || 1;
   var limit = 10;
-  Content.find().limit(limit).skip((page - 1) * limit).populate(['category', 'user']).then(function (contents) {
+  // Content.find().limit(limit).skip((page - 1) * limit).populate(['category', 'user']).sort({_id: -1}).then(function (contents) {
+  //   res.json({
+  //     code: 0,
+  //     data: contents
+  //   })
+  // });
+
+  Content.find()
+    .limit(limit)
+    .skip((page - 1) * limit)
+    .populate('category', 'name')
+    .populate('user', 'username')
+    .sort({_id: -1})
+    .then(function (contents) {
     res.json({
       code: 0,
       data: contents

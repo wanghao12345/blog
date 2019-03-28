@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var moment = require('moment');
 
 // 内容的表结构
-module.exports = new mongoose.Schema({
+var contentSchema = new mongoose.Schema({
   // 关联字段 - 分类的id
   category: {
     // 类型
@@ -27,8 +27,9 @@ module.exports = new mongoose.Schema({
 
   // 添加时间
   addTime: {
-    type: Date,
-    default: new Date()
+    type: String,
+    // default: new Date()
+    default: moment(new Date()).format('YYYY-MM-DD HH:mm:ss')
   },
 
   // 阅读量
@@ -56,3 +57,4 @@ module.exports = new mongoose.Schema({
   }
 
 });
+module.exports = contentSchema

@@ -306,7 +306,7 @@ router.get('/content', function (req, res, next) {
     // 忽略条数
     var skip = (page - 1) * limit;
 
-    Content.find(query).limit(limit).skip(skip).populate(['category', 'user']).then(function (contents) {
+    Content.find(query).limit(limit).skip(skip).populate(['category', 'user']).sort({addTime: -1}).then(function (contents) {
       // 查询分类
       Category.find().sort({_id: -1}).then(function (categories) {
         res.render('admin/content_index', {
