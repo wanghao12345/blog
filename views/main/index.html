@@ -37,7 +37,8 @@
 </nav>
 
 <main role="main" class="container">
-  <div class="container-left">
+  <div class="container-left" id="article-container">
+
     <article class="article-item">
       <header class="article-top">
         <div class="article-type">个人随笔<i></i></div>
@@ -111,11 +112,36 @@
     {% endif %}
   </div>
 </main>
-
-<script src="/public/js/lib/jquery-3.2.1.min.js"></script>
-<script src="/public/js/lib/popper.min.js"></script>
-<script src="/public/js/lib/bootstrap.min.js"></script>
-<script src="/public/js/main/index.js"></script>
-
+<!--文章模板-->
+<script id="articleTemp" type="text/html">
+  <article class="article-item">
+    <header class="article-top">
+      <div class="article-type"><%=category.name%><i></i></div>
+    </header>
+    <div class="article-content">
+      <div class="article-img">
+        <a href="#">
+          <img class="thumb" src="https://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=https://qiniu.cuiqingcai.com/wp-content/uploads/2018/02/5.3.2.jpg&amp;h=123&amp;w=200&amp;q=90&amp;zc=1&amp;ct=1" alt="从学校迈入职场">
+        </a>
+      </div>
+      <div class="article-description">
+        <a href="#">
+          <h2 class="article-title main-text-color"><%=title%></h2>
+          <div class="article-description-content">
+            <%=description%>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="article-bottom">
+      <a href="#">作者：<%=user.username%></a>
+      <a href="#">时间：<%=addTime%></a>
+      <a href="#">浏览人数：<%=views%>人</a>
+      <a href="#">评论：10</a>
+      <a href="#">喜欢：56</a>
+    </div>
+  </article>
+</script>
+<script src="/public/js/lib/require.js" data-main="/public/js/main/index.js"></script>
 </body>
 </html>

@@ -143,6 +143,7 @@ article.article-item .article-bottom a{
   padding: 0 20px 20px 20px;
   border-radius: 3px;
   margin-bottom: 20px;
+  animation:loadArticleAnimation 1s linear;
 }
 .b-modular-name{
   width: 100%;
