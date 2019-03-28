@@ -65,6 +65,9 @@ app.use(function (req, res, next) {
 // 配置静态文件
 app.use('/public', express.static(__dirname + '/public'));
 
+// 配置功能模块
+app.use('/utils', require('./routers/utils'));
+
 // 配置后台管理模块
 app.use('/admin', require('./routers/admin'));
 

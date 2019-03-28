@@ -17,6 +17,9 @@ var contentSchema = new mongoose.Schema({
   // 内容标题
   title: String,
 
+  // 标题图片
+  titleImg: String,
+
   // 关联字段 - 用户id
   user: {
     // 类型
