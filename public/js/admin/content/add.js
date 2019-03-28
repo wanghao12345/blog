@@ -106,7 +106,7 @@ function uploaderImg(callback) {
   });
 
 // 文件上传成功，给item添加成功class, 用样式标记上传成功。
-  uploader.on( 'uploadSuccess', function( file ) {
+  uploader.on( 'uploadSuccess', function( file , result) {
     $( '#'+file.id ).addClass('upload-state-done');
   });
 
