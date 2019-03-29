@@ -26,8 +26,11 @@ router.get('/', function (req, res, next) {
  * 文章详情
  */
 router.get('/article/detail', function (req, res, next) {
-  res.render('main/article/article_detail', {
-    userInfo: req.userInfo,
+  Category.find().then(function (categories) {
+    res.render('main/article/article_detail', {
+      userInfo: req.userInfo,
+      categories: categories
+    });
   });
 });
 
