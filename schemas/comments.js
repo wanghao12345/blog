@@ -4,6 +4,14 @@ var mongoose = require('mongoose');
 // 评论的表结构
 module.exports = new mongoose.Schema({
 
+  // 关联字段 - 用户的id
+  users: {
+    // 类型
+    type: mongoose.Schema.Types.ObjectId,
+    // 引用
+    ref: 'User'
+  },
+
   // 关联字段 - 内容的id
   contents: {
     // 类型
@@ -24,5 +32,5 @@ module.exports = new mongoose.Schema({
   describe: String,
 
   // 评论时间
-  createTime: Date
+  createTime: String
 });

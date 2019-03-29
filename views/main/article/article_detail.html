@@ -1,6 +1,5 @@
 {% extends '../layout.html' %}
 
-
 {% block style %}
 <title>文章详情</title>
 <link href="/public/css/main/article/article_detail.css" rel="stylesheet">
@@ -9,24 +8,21 @@
 
 {% block main %}
 <div class="article-detail-content">
-  <div class="article-head" id="article-head">
-
-  </div>
-  <div class="article-body" id="article-body">
-
-  </div>
+  <div class="article-head" id="article-head"></div>
+  <div class="article-body" id="article-body"></div>
 </div>
 
-<div class="article-comment">
-  <form>
+<div class="article-comment" id="article-comment">
+  <input type="hidden" id="userInfo" value="{{userInfo._id}}">
+  <div>
     <div class="form-group">
       <label for="comment" style="height: 50px;line-height: 50px;">发表我的评论：</label>
       <textarea class="form-control" id="comment" rows="3"></textarea>
     </div>
     <div class="form-group" style="overflow: hidden">
-      <button type="submit" style="float: right;" class="btn btn-outline-success">提交评论</button>
+      <button type="submit" id="postComment" style="float: right;" class="btn btn-outline-success">提交评论</button>
     </div>
-  </form>
+  </div>
   <h3 class="comment-num">(13)个小伙伴评论了</h3>
   <div class="comment-list">
     <ul>
@@ -44,6 +40,7 @@
   </div>
 
 </div>
+
 <script type="text/html" id="article_head">
   <h1 class="article-title"><%=title%></h1>
   <nav class="article-nav">
@@ -57,8 +54,5 @@
     </ul>
   </nav>
 </script>
-
-
-
 <script src="/public/js/lib/require.js" data-main="/public/js/main/article/article_detail.js"></script>
 {% endblock %}

@@ -7,6 +7,12 @@ var User = require('../models/User');
 // 引入 content model模型
 var Content = require('../models/Content');
 
+// 引入 Comment model模型
+var Comment = require('../models/Comment')
+
+// 引入 moment 模块
+var moment = require('moment');
+
 // 使用express的Router()路由方法
 var router = express.Router();
 
@@ -163,6 +169,37 @@ router.get('/home/article/list', function (req, res, next) {
     res.json({
       code: 0,
       data: contents
+    })
+  });
+});
+
+/**
+ * 提交评论
+ */
+router.post('/commit/article/comment', function (req, res, next) {
+  var userInfo = req.body.userInfo || '';
+  var contents = req.body.contents || '';
+  var fid = req.body.fid || '';
+  var describe = req.body.describe || '';
+  var createTime = req.body.createTime || '';
+
+  return new Comment({
+    userInfo: userInfo,
+    contents: contents,
+    fid: fid,
+    describe: describe,
+    createTime: createTime,
+  }).save().then(function (result) {
+    console.log(result);
+    res.json({
+      code: 0,
+      message: '保存成功',
+      data: {
+        userInfo: userInfo,
+        describe: describe,
+        createTime: createTime,
+        fid: fid,
+      }
     })
   });
 });
