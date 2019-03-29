@@ -22,22 +22,4 @@ define(function () {
     clientScrollBar
   }
 
-
 });
-
-
-// function clientScrollBar (callback) {
-//   window.onscroll = function () {
-//     // 滚动条距离顶部的距离
-//     var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-//     // 可视区高度
-//     var windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
-//     // 滚动条总高度
-//     var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
-//
-//     if (scrollTop + windowHeight === scrollHeight) {
-//       callback();
-//     }
-//   }
-// }
-//

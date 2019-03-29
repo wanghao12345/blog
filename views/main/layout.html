@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="https://v4.bootcss.com/favicon.ico">
+  <title>主页</title>
+  <link href="/public/css/lib/bootstrap.min.css" rel="stylesheet">
+  <link href="/public/css/share/reset.css" rel="stylesheet">
+  <link href="/public/css/share/navbar-top.css" rel="stylesheet">
+  <link href="/public/css/share/main-body.css" rel="stylesheet">
+  {% block style %} {% endblock %}
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-success main-bg-color mb-4">
+  <a class="navbar-brand text-white" href="/">CordingBlog</a>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link text-white" href="/">首页</a>
+      </li>
+
+      {% for category in categories %}
+      <li class="nav-item">
+        <a class="nav-link text-white" href="/">{{category.name}}</a>
+      </li>
+      {% endfor %}
+    </ul>
+    <form class="form-inline mt-2 mt-md-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="请输入搜索内容" aria-label="Search">
+      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">搜索</button>
+    </form>
+  </div>
+</nav>
+
+<main role="main" class="container">
+  <div class="container-left">
+    {% block main %} {% endblock %}
+  </div>
+  <div class="container-right">
+    {% if userInfo._id %}
+    <!--用户信息模块-->
+    {% include 'template/UserInfo.html' %}
+    {% else %}
+    <!--登录模块-->
+    {% include 'template/Login.html' %}
+    <!--注册模块-->
+    {% include 'template/Register.html' %}
+    {% endif %}
+  </div>
+</main>
+</body>
+</html>

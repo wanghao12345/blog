@@ -1,57 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link rel="icon" href="https://v4.bootcss.com/favicon.ico">
-  <title>主页</title>
-  <link href="/public/css/lib/bootstrap.min.css" rel="stylesheet">
-  <link href="/public/css/share/reset.css" rel="stylesheet">
-  <link href="/public/css/share/navbar-top.css" rel="stylesheet">
-  <link href="/public/css/share/main-body.css" rel="stylesheet">
-</head>
-
-<body>
-
-<nav class="navbar navbar-expand-md navbar-success main-bg-color mb-4">
-  <a class="navbar-brand text-white" href="/">CordingBlog</a>
-  <div class="collapse navbar-collapse" id="navbarCollapse">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link text-white" href="/">首页</a>
-      </li>
-
-      {% for category in categories %}
-      <li class="nav-item">
-        <a class="nav-link text-white" href="/">{{category.name}}</a>
-      </li>
-      {% endfor %}
-    </ul>
-    <form class="form-inline mt-2 mt-md-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="请输入搜索内容" aria-label="Search">
-      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">搜索</button>
-    </form>
-  </div>
-</nav>
-
-<main role="main" class="container">
-  <div class="container-left">
-    <div id="article-container"></div>
-  </div>
-  <div class="container-right">
-    {% if userInfo._id %}
-    <!--用户信息模块-->
-      {% include 'template/UserInfo.html' %}
-    {% else %}
-    <!--登录模块-->
-      {% include 'template/Login.html' %}
-    <!--注册模块-->
-      {% include 'template/Register.html' %}
-    {% endif %}
-  </div>
-</main>
+{% extends 'layout.html' %}
+{% block main %}
+<div id="article-container"></div>
 <!--文章模板-->
 <script id="articleTemp" type="text/html">
   <article class="article-item">
@@ -60,12 +9,12 @@
     </header>
     <div class="article-content">
       <div class="article-img">
-        <a href="#">
-          <img class="thumb" src="https://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=https://qiniu.cuiqingcai.com/wp-content/uploads/2018/02/5.3.2.jpg&amp;h=123&amp;w=200&amp;q=90&amp;zc=1&amp;ct=1" alt="从学校迈入职场">
+        <a target="_blank" href="/article/detail?id=<%=_id%>">
+          <img class="thumb" src="<%=titleImg%>" alt="标题图片">
         </a>
       </div>
       <div class="article-description">
-        <a href="#">
+        <a target="_blank" href="/article/detail?id=<%=_id%>">
           <h2 class="article-title main-text-color"><%=title%></h2>
           <div class="article-description-content">
             <%=description%>
@@ -83,5 +32,4 @@
   </article>
 </script>
 <script src="/public/js/lib/require.js" data-main="/public/js/main/index.js"></script>
-</body>
-</html>
+{% endblock %}

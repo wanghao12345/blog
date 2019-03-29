@@ -1,0 +1,28 @@
+{% extends '../layout.html' %}
+{% block style %}
+<link href="/public/css/main/article/article_detail.css" rel="stylesheet">
+{% endblock %}
+{% block main %}
+<div class="article-detail-content">
+  <div class="article-head" id="article-head">
+
+  </div>
+  <div class="article-body" id="article-body">
+
+  </div>
+</div>
+<script type="text/html" id="article_head">
+  <h1 class="article-title">JavaScript基础</h1>
+  <nav class="article-nav">
+    <ul>
+      <li>分类：<%=category.name%></li>
+      <li>作者：<%=user.username%></li>
+      <li>发布时间：<%=addTime%></li>
+      <li>浏览人数：<%=views%></li>
+      <li>评论：10</li>
+      <li>喜欢：<%=loves%></li>
+    </ul>
+  </nav>
+</script>
+<script src="/public/js/lib/require.js" data-main="/public/js/main/article/article_detail.js"></script>
+{% endblock %}

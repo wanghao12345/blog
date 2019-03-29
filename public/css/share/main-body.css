@@ -107,7 +107,8 @@ article.article-item .article-content .article-img{
   display: table;
 }
 article.article-item .article-content .article-img img{
-
+  width: 200px;
+  height: 123px;
 }
 article.article-item .article-content .article-description{
   color: #777;
