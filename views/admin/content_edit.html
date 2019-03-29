@@ -45,7 +45,16 @@
 <script>
   KindEditor.ready(function (K) {
     var options = {
-      minHeight: 300
+      minHeight: 300,
+      allowFileManager : true,
+      uploadJson: '/utils/upload/img',
+      filePostName: 'file',
+      afterUpload: function () {
+        this.sync();
+      },
+      afterBlur: function () {
+        this.sync();
+      }
     };
     window.editor = K.create('#content', options);
   });

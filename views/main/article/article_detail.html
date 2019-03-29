@@ -1,8 +1,12 @@
 {% extends '../layout.html' %}
+
+
 {% block style %}
 <title>文章详情</title>
 <link href="/public/css/main/article/article_detail.css" rel="stylesheet">
 {% endblock %}
+
+
 {% block main %}
 <div class="article-detail-content">
   <div class="article-head" id="article-head">
@@ -11,6 +15,21 @@
   <div class="article-body" id="article-body">
 
   </div>
+</div>
+
+<div class="article-comment">
+  <form>
+    <div class="form-group">
+      <label for="comment" style="height: 50px;line-height: 50px;">发表我的评论：</label>
+      <textarea class="form-control" id="comment" rows="3"></textarea>
+    </div>
+    <div class="form-group" style="overflow: hidden">
+      <button type="submit" style="float: right;" class="btn btn-outline-success">提交评论</button>
+    </div>
+  </form>
+  <h3>(13)个小伙伴评论了</h3>
+
+
 </div>
 <script type="text/html" id="article_head">
   <h1 class="article-title"><%=title%></h1>
@@ -25,5 +44,8 @@
     </ul>
   </nav>
 </script>
+
+
+
 <script src="/public/js/lib/require.js" data-main="/public/js/main/article/article_detail.js"></script>
 {% endblock %}

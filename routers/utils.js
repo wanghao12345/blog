@@ -20,8 +20,10 @@ router.post('/upload/img', function (req, res, next) {
 
       var uploadedPath = inputFile.path;
       res.json({
+        error: 0,
         code: 0,
-        path: '\\' + uploadedPath
+        path: '\\' + uploadedPath,
+        url: 'http://localhost:8081\\' + uploadedPath
       })
     }
   });

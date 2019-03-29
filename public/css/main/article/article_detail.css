@@ -2,6 +2,8 @@
   width: 100%;
   min-height: 700px;
   background-color: white;
+  border-radius: 5px;
+  animation:loadArticleAnimation 1s linear;
 }
 .article-head{
 
@@ -51,7 +53,15 @@
   font-size: 15px !important;
   line-height: 30px;
 }
-
+.article-comment{
+  border: 1px solid #d4d4d4;
+  margin: 20px 0;
+  box-sizing: border-box;
+  padding: 0px 10px;
+  border-radius: 5px;
+  background-color: white;
+  animation:loadArticleAnimation 1s linear;
+}
 
 
 

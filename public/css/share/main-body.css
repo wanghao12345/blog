@@ -47,14 +47,6 @@ article.article-item{
   clear: both;
   animation:loadArticleAnimation 1s linear;
 }
-@keyframes loadArticleAnimation {
-  from {
-    margin-top: 20px;
-  }
-  to {
-    margin-top: 0;
-  }
-}
 article.article-item a{
   text-decoration: none;
 }
