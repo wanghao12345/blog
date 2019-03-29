@@ -7,12 +7,10 @@ $(function () {
     addContentRequest($addBox);
   });
 
-
-  uploaderImg(function () {
-
+  // 选择图片
+  uploaderImg(function (path) {
+    $('input[name="titleImg"]').val(path);
   });
-
-
 });
 
 /**
@@ -26,6 +24,7 @@ function addContentRequest($addBox) {
       category: $addBox.find('select[name="category"]').val(),
       title: $addBox.find('input[name="title"]').val(),
       description: $addBox.find('textarea[name="description"]').val(),
+      titleImg: $addBox.find('input[name="titleImg"]').val(),
       content: window.editor.html(),
     },
     dataType: 'json',
@@ -108,6 +107,9 @@ function uploaderImg(callback) {
 // 文件上传成功，给item添加成功class, 用样式标记上传成功。
   uploader.on( 'uploadSuccess', function( file , result) {
     $( '#'+file.id ).addClass('upload-state-done');
+    if (!result.code){
+      callback(result.path);
+    }
   });
 
 // 文件上传失败，显示上传出错。

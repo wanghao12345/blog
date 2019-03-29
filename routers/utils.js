@@ -21,7 +21,7 @@ router.post('/upload/img', function (req, res, next) {
       var uploadedPath = inputFile.path;
       res.json({
         code: 0,
-        path: '/' + uploadedPath
+        path: '\\' + uploadedPath
       })
     }
   });

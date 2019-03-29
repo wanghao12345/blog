@@ -343,6 +343,7 @@ router.get('/content/add', function (req, res, next) {
 router.post('/content/add', function (req, res, next) {
   var category = req.body.category || '';
   var title = req.body.title || '';
+  var titleImg = req.body.titleImg || '';
   var description = req.body.description;
   var content = req.body.content;
 
@@ -365,6 +366,7 @@ router.post('/content/add', function (req, res, next) {
     title: title,
     user: req.userInfo._id.toString(),
     description: description,
+    titleImg: titleImg,
     content: content
   }).save(function (result) {
     res.json({
@@ -413,6 +415,7 @@ router.post('/content/edit', function (req, res, next) {
   var id = req.body.id || '';
   var category = req.body.category || '';
   var title = req.body.title || '';
+  var titleImg = req.body.titleImg || '';
   var description = req.body.description;
   var content = req.body.content;
 
@@ -435,6 +438,7 @@ router.post('/content/edit', function (req, res, next) {
   },{
     category: category,
     title: title,
+    titleImg: titleImg,
     user: req.userInfo._id.toString(),
     description: description,
     content: content

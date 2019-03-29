@@ -20,6 +20,16 @@
     <label for="title">标题：</label>
     <input type="text" class="form-control" autocomplete="off" name="title" id="title" aria-describedby="emailHelp" placeholder="请输入标题名称">
   </div>
+  <div class="form-group" style="height: 200px">
+    <label for="uploader-demo">标题图片：</label>
+    <input type="hidden" name="titleImg" id="titleImg">
+    <!--dom结构部分-->
+    <div id="uploader-demo">
+      <!--用来存放item-->
+      <div id="fileList" class="uploader-list"></div>
+      <div id="filePicker">选择图片</div>
+    </div>
+  </div>
   <div class="form-group">
     <label for="description">简介：</label>
     <textarea class="form-control" name="description" id="description" rows="3"></textarea>
@@ -40,5 +50,6 @@
     window.editor = K.create('#content', options);
   });
 </script>
+<script src="/public/js/lib/webuploader/webuploader.js"></script>
 <script src="/public/js/admin/content/edit.js"></script>
 {% endblock %}
