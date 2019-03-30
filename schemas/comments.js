@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 module.exports = new mongoose.Schema({
 
   // 关联字段 - 用户的id
-  users: {
+  user: {
     // 类型
     type: mongoose.Schema.Types.ObjectId,
     // 引用
@@ -13,7 +13,7 @@ module.exports = new mongoose.Schema({
   },
 
   // 关联字段 - 内容的id
-  contents: {
+  content: {
     // 类型
     type: mongoose.Schema.Types.ObjectId,
     // 引用

@@ -10,6 +10,9 @@ var Category = require('../models/Category');
 // 引入 content model 模块
 var Content = require('../models/Content');
 
+// 引入 comment model 模块
+var Comment = require('../models/Comment');
+
 // 使用express的Router()路由方法
 var router = express.Router();
 
@@ -473,6 +476,49 @@ router.get('/content/delete', function (req, res, next) {
     }
   })
 
+});
+
+/**
+ * 评论首页
+ */
+router.get('/comment', function (req, res, next) {
+
+  var page = Number(req.query.page || 1);
+  var limit = 10;
+  var pages = 0;
+
+  Comment.count().then(function (count) {
+    // 计算总页数
+    pages = Math.ceil(count / limit);
+    // 取值不能超过pages
+    page = Math.min(page, pages);
+    // 取值不能低于1
+    page = Math.max(page, 1);
+
+    // 忽略条数
+    var skip = (page - 1) * limit;
+
+    Comment
+      .find()
+      .limit(limit)
+      .skip(skip)
+      .populate('content', 'title')
+      .populate('user', 'username')
+      .sort({_id: -1})
+      .then(function (comments) {
+        console.log(comments);
+        res.render('admin/comment_index', {
+          userInfo: req.userInfo,
+          comments: comments,
+          // 分页参数
+          page: page,
+          pages: pages,
+          limit: limit,
+          count: count,
+          pageUrl: '/admin/comment'
+        });
+      });
+  });
 });
 
 

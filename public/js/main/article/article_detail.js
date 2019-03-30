@@ -21,10 +21,15 @@ require(['jquery', 'getQueryString', 'template'], function ($, getQueryString, t
 
     // 提交评论
     var $articleComment = $('#article-comment');
-
     $articleComment.find('#postComment').on('click', function () {
       postComment(id, 0, $articleComment);
     });
+
+
+
+
+
+
   });
 
   /**

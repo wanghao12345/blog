@@ -177,15 +177,15 @@ router.get('/home/article/list', function (req, res, next) {
  * 提交评论
  */
 router.post('/commit/article/comment', function (req, res, next) {
-  var userInfo = req.body.userInfo || '';
-  var contents = req.body.contents || '';
+  var user = req.body.userInfo || '';
+  var content = req.body.contents || '';
   var fid = req.body.fid || '';
   var describe = req.body.describe || '';
   var createTime = req.body.createTime || '';
 
   return new Comment({
-    userInfo: userInfo,
-    contents: contents,
+    user: user,
+    content: content,
     fid: fid,
     describe: describe,
     createTime: createTime,
@@ -195,7 +195,7 @@ router.post('/commit/article/comment', function (req, res, next) {
       code: 0,
       message: '保存成功',
       data: {
-        userInfo: userInfo,
+        userInfo: user,
         describe: describe,
         createTime: createTime,
         fid: fid,
