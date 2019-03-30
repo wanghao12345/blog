@@ -190,17 +190,23 @@ router.post('/commit/article/comment', function (req, res, next) {
     describe: describe,
     createTime: createTime,
   }).save().then(function (result) {
-    console.log(result);
-    res.json({
-      code: 0,
-      message: '保存成功',
-      data: {
-        userInfo: user,
-        describe: describe,
-        createTime: createTime,
-        fid: fid,
-      }
-    })
+
+    console.log('result:' + result);
+
+
+    User.findOne({_id: user}).then(function (user) {
+      res.json({
+        code: 0,
+        message: '保存成功',
+        data: {
+          _id: result._id,
+          username: user.username,
+          describe: describe,
+          createTime: createTime,
+          fid: fid,
+        }
+      });
+    });
   });
 });
 

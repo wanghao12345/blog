@@ -506,7 +506,6 @@ router.get('/comment', function (req, res, next) {
       .populate('user', 'username')
       .sort({_id: -1})
       .then(function (comments) {
-        console.log(comments);
         res.render('admin/comment_index', {
           userInfo: req.userInfo,
           comments: comments,
@@ -519,6 +518,34 @@ router.get('/comment', function (req, res, next) {
         });
       });
   });
+});
+
+/**
+ * 删除评论
+ */
+router.get('/comment/delete', function (req, res, next) {
+  var id = req.query.id || '';
+  if (id === '') {
+    res.render('admin/error', {
+      userInfo: req.userInfo,
+      message: '删除失败'
+    })
+  }
+
+  Comment.remove({_id: id}).then(function (err) {
+    if (err) {
+      res.render('admin/success', {
+        userInfo: req.userInfo,
+        message: '删除成功',
+        url: '/admin/comment'
+      })
+    } else {
+      res.render('admin/error', {
+        userInfo: req.userInfo,
+        message: '删除失败'
+      })
+    }
+  })
 });
 
 

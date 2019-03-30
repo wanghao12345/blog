@@ -14,7 +14,7 @@
     <th>评论者</th>
     <th>评论文章</th>
     <th>评论内容</th>
-    <th>评论伏击帖子ID</th>
+    <th>回复帖子ID</th>
     <th>评论时间</th>
     <th>操作</th>
   </tr>
@@ -29,7 +29,7 @@
     <td>{{comment.fid.toString()}}</td>
     <td>{{comment.createTime}}</td>
     <td>
-      <a href="/admin/comment/delete?id={{content._id.toString()}}">删除</a>
+      <a href="/admin/comment/delete?id={{comment._id.toString()}}">删除</a>
     </td>
   </tr>
   {% endfor %}

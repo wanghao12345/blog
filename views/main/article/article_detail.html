@@ -14,28 +14,21 @@
 
 <div class="article-comment" id="article-comment">
   <input type="hidden" id="userInfo" value="{{userInfo._id}}">
-  <div>
-    <div class="form-group">
-      <label for="comment" style="height: 50px;line-height: 50px;">发表我的评论：</label>
-      <textarea class="form-control" id="comment" rows="3"></textarea>
-    </div>
-    <div class="form-group" style="overflow: hidden">
-      <button type="submit" id="postComment" style="float: right;" class="btn btn-outline-success">提交评论</button>
+  <div class="edit-comment-outBox">
+    <div class="edit-comment" id="edit-comment">
+      <div class="form-group">
+        <label for="comment" style="height: 50px;line-height: 50px;">发表我的评论：</label>
+        <textarea class="form-control" id="comment" rows="3"></textarea>
+      </div>
+      <div class="form-group" style="overflow: hidden">
+        <button type="submit" id="postComment" style="float: right;" class="btn btn-outline-success">提交评论</button>
+      </div>
     </div>
   </div>
   <h3 class="comment-num">(13)个小伙伴评论了</h3>
   <div class="comment-list">
-    <ul>
-      <li>
-        <div class="comment-img">
-          <img src="https://cuiqingcai.com/avatar/cd9c3f6176fdc9873eb3f0c4d0587736.png" alt="头像">
-        </div>
-        <div class="comment-cont">
-          <p class="comment-name">小明评论了：（时间：2019-03-29 13:20:12）</p>
-          <p class="coment-content">非常好，very good</p>
-          <p class="comment-reply"><a href="javascript:;">回复</a></p>
-        </div>
-      </li>
+    <ul id="comment-list">
+
     </ul>
   </div>
 
@@ -54,5 +47,19 @@
     </ul>
   </nav>
 </script>
+<script type="text/html" id=""></script>
+<script type="text/html" id="comment-cont">
+  <li>
+    <div class="comment-img">
+      <img src="https://cuiqingcai.com/avatar/cd9c3f6176fdc9873eb3f0c4d0587736.png" alt="头像">
+    </div>
+    <div class="comment-cont">
+      <p class="comment-name"><%=username%>评论了：（时间：<%=createTime%>）</p>
+      <p class="coment-content"><%=describe%></p>
+      <p class="comment-reply"><a href="javascript:;" class="reply-btn" data-id="<%=_id%>">回复</a></p>
+    </div>
+  </li>
+</script>
+
 <script src="/public/js/lib/require.js" data-main="/public/js/main/article/article_detail.js"></script>
 {% endblock %}

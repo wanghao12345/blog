@@ -82,7 +82,18 @@
   justify-content: left;
   align-items: center;
   margin: 10px 0 0 0;
+  animation:commentAnimation 1s linear;
 }
+@keyframes commentAnimation {
+  from {
+    margin-top: 20px;
+  }
+  to {
+    margin-top: 10px;
+  }
+}
+
+
 .article-comment .comment-list ul li .comment-img{
   width: 66px;
   height: 66px;

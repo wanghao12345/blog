@@ -12,6 +12,7 @@ require(['jquery', 'getQueryString', 'template'], function ($, getQueryString, t
   $(function () {
     // 获取文章详情
     var id = getQueryString.getQueryString('id');
+    $('#comment-list').addClass('comment-' + id);
     getArticleDetail(id, function (result) {
       var html = template('article_head', result.data);
       $('#article-head').append(html);
@@ -25,6 +26,14 @@ require(['jquery', 'getQueryString', 'template'], function ($, getQueryString, t
       postComment(id, 0, $articleComment);
     });
 
+    // 回复
+    $articleComment.on('click','.reply-btn', function () {
+      var id = $(this).data('id');
+      $('#edit-comment').remove();
+
+
+
+    });
 
 
 
@@ -55,6 +64,7 @@ require(['jquery', 'getQueryString', 'template'], function ($, getQueryString, t
    * @param fid 回复的目标贴的id
    */
   function postComment(id, fid, $articleComment) {
+    fid || (fid = id);
     var date = new Date();
     var createTime = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate() + ' '
                      + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
@@ -64,15 +74,25 @@ require(['jquery', 'getQueryString', 'template'], function ($, getQueryString, t
       data: {
         userInfo: $articleComment.find('input#userInfo').val(),
         contents: id,
-        fid: id,
+        fid: fid,
         describe: $articleComment.find('textarea#comment').val(),
         createTime: createTime
       },
       dataType: 'json',
       success: function (result) {
-        console.log(result);
+        if (!result.code){
+          addComment(result.data)
+        }
       }
     })
+  }
+
+  /**
+   * 添加评论
+   */
+  function addComment(data) {
+    var html = template('comment-cont', data);
+    $('.comment-' + data.fid).append(html);
   }
 
 });
