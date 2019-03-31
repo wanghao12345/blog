@@ -10,6 +10,10 @@ require.config({
 require(['jquery', 'getQueryString', 'template'], function ($, getQueryString, template) {
 
   $(function () {
+
+    var editHtml = template('edit-comment-cont', {});
+    $('.edit-comment-outBox').append(editHtml);
+
     // 获取文章详情
     var id = getQueryString.getQueryString('id');
     $('#comment-list').addClass('comment-' + id);
@@ -30,9 +34,7 @@ require(['jquery', 'getQueryString', 'template'], function ($, getQueryString, t
     $articleComment.on('click','.reply-btn', function () {
       var id = $(this).data('id');
       $('#edit-comment').remove();
-
-
-
+      $(this).parents('li').after(editHtml);
     });
 
 
