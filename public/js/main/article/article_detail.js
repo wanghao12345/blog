@@ -3,11 +3,12 @@ require.config({
   paths: {
     jquery: 'lib/jquery-3.2.1.min',
     getQueryString: 'utils/getQueryString',
-    template: 'lib/template'
+    template: 'lib/template',
+    share: 'main/share/share'
   }
 });
 
-require(['jquery', 'getQueryString', 'template'], function ($, getQueryString, template) {
+require(['jquery', 'getQueryString', 'template', 'share'], function ($, getQueryString, template, share) {
 
   $(function () {
 
