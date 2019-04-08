@@ -25,23 +25,23 @@ require(['jquery', 'getQueryString', 'template', 'share'], function ($, getQuery
 
     });
 
+    // 获取文章评论
+    getComment(id);
+
     // 提交评论
     var $articleComment = $('#article-comment');
-    $articleComment.find('#postComment').on('click', function () {
-      postComment(id, 0, $articleComment);
+    $articleComment.on('click', '#postComment', function () {
+      var fid = $(this).data('fid') || 0;
+      postComment(id, fid, $articleComment);
     });
 
     // 回复
     $articleComment.on('click','.reply-btn', function () {
-      var id = $(this).data('id');
+      var fid = $(this).data('fid');
       $('#edit-comment').remove();
-      $(this).parents('li').after(editHtml);
+      $(this).parents('li.comment-li-'+fid).after(editHtml);
+      $articleComment.find('#postComment').attr('data-fid', fid);
     });
-
-
-
-
-
   });
 
   /**
@@ -60,7 +60,6 @@ require(['jquery', 'getQueryString', 'template', 'share'], function ($, getQuery
       }
     })
   }
-
   /**
    * 评论
    * @param id 文章内容id
@@ -96,6 +95,35 @@ require(['jquery', 'getQueryString', 'template', 'share'], function ($, getQuery
   function addComment(data) {
     var html = template('comment-cont', data);
     $('.comment-' + data.fid).append(html);
+
+    // 初始化
+    $('div.edit-comment').remove();
+    var editHtml = template('edit-comment-cont', {});
+    $('.edit-comment-outBox').append(editHtml);
+  }
+
+  /**
+   * 获取文章评论内容
+   */
+  function getComment(id) {
+    $.ajax({
+      type: 'get',
+      url: '/api/get/article/comment',
+      data: {
+        id: id
+      },
+      dataType: 'json',
+      success: function (result) {
+        console.log(result);
+        if(!result.code){
+          result.data.forEach(function (item, index) {
+            var html = template('comment-cont', item);
+            $('.comment-' + item.fid).append(html);
+          })
+          $('#comment-num').html(result.data.length);
+        }
+      }
+    })
   }
 
 });

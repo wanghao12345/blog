@@ -200,13 +200,34 @@ router.post('/commit/article/comment', function (req, res, next) {
         message: '保存成功',
         data: {
           _id: result._id,
-          username: user.username,
+          user: user.username,
           describe: describe,
           createTime: createTime,
           fid: fid,
         }
       });
     });
+  });
+});
+
+/**
+ * 获取评论
+ */
+router.get('/get/article/comment', function (req, res, next) {
+  var id = req.query.id;
+  Comment.find({content: id}).then(function (comments) {
+    
+
+
+
+    res.json({
+      code: 0,
+      data: comments
+    })
+
+
+
+
   });
 });
 

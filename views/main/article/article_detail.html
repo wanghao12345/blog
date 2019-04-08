@@ -15,7 +15,7 @@
 <div class="article-comment" id="article-comment">
   <input type="hidden" id="userInfo" value="{{userInfo._id}}">
   <div class="edit-comment-outBox"></div>
-  <h3 class="comment-num">(13)个小伙伴评论了</h3>
+  <h3 class="comment-num">(<span id="comment-num">0</span>)个小伙伴评论了</h3>
   <div class="comment-list">
     <ul id="comment-list">
 
@@ -49,15 +49,20 @@
   </div>
 </script>
 <script type="text/html" id="comment-cont">
-  <li>
-    <div class="comment-img">
-      <img src="https://cuiqingcai.com/avatar/cd9c3f6176fdc9873eb3f0c4d0587736.png" alt="头像">
+  <li class="comment-li-<%=_id%>">
+    <div class="comment-item">
+      <div class="comment-img">
+        <img src="https://cuiqingcai.com/avatar/cd9c3f6176fdc9873eb3f0c4d0587736.png" alt="头像">
+      </div>
+      <div class="comment-cont">
+        <p class="comment-name"><%=username%>评论了：（时间：<%=createTime%>）</p>
+        <p class="coment-content"><%=describe%></p>
+        <p class="comment-reply"><a href="javascript:;" class="reply-btn" data-fid="<%=_id%>">回复</a></p>
+      </div>
     </div>
-    <div class="comment-cont">
-      <p class="comment-name"><%=username%>评论了：（时间：<%=createTime%>）</p>
-      <p class="coment-content"><%=describe%></p>
-      <p class="comment-reply"><a href="javascript:;" class="reply-btn" data-id="<%=_id%>">回复</a></p>
-    </div>
+    <ul class="comment-<%=_id%>" style="width: 100%;box-sizing: border-box;padding-left: 86px">
+
+    </ul>
   </li>
 </script>
 
