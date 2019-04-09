@@ -19,10 +19,10 @@ require(['jquery', 'getQueryString', 'template', 'share'], function ($, getQuery
     var id = getQueryString.getQueryString('id');
     $('#comment-list').addClass('comment-' + id);
     getArticleDetail(id, function (result) {
-      var html = template('article_head', result.data);
+      var html = template('article_head', result.data.contents);
       $('#article-head').append(html);
-      $('#article-body').html(result.data.content);
-
+      $('#article-body').html(result.data.contents.content);
+      $('span.comment-num').html(result.data.comments);
     });
 
     // 获取文章评论
@@ -70,6 +70,22 @@ require(['jquery', 'getQueryString', 'template', 'share'], function ($, getQuery
     var date = new Date();
     var createTime = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate() + ' '
                      + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+
+    if (!$articleComment.find('input#userInfo').val()) {
+      layui.use('layer', function(){
+        var layer = layui.layer;
+        layer.msg('登录后才可评论！', {icon: 2});
+      });
+      return
+    }
+    if (!$articleComment.find('textarea#comment').val()) {
+      layui.use('layer', function(){
+        var layer = layui.layer;
+        layer.msg('评论内容不能为空！', {icon: 2});
+      });
+      return
+    }
+
     $.ajax({
       type: 'post',
       url: '/api/commit/article/comment',
@@ -83,7 +99,7 @@ require(['jquery', 'getQueryString', 'template', 'share'], function ($, getQuery
       dataType: 'json',
       success: function (result) {
         if (!result.code){
-          addComment(result.data)
+          addComment(id, result.data)
         }
       }
     })
@@ -92,14 +108,13 @@ require(['jquery', 'getQueryString', 'template', 'share'], function ($, getQuery
   /**
    * 添加评论
    */
-  function addComment(data) {
-    var html = template('comment-cont', data);
-    $('.comment-' + data.fid).append(html);
-
+  function addComment(id, data) {
     // 初始化
     $('div.edit-comment').remove();
     var editHtml = template('edit-comment-cont', {});
     $('.edit-comment-outBox').append(editHtml);
+    // 获取评论
+    getComment(id);
   }
 
   /**
@@ -114,13 +129,13 @@ require(['jquery', 'getQueryString', 'template', 'share'], function ($, getQuery
       },
       dataType: 'json',
       success: function (result) {
-        console.log(result);
         if(!result.code){
+          $('ul#comment-list').html('');
           result.data.forEach(function (item, index) {
             var html = template('comment-cont', item);
             $('.comment-' + item.fid).append(html);
           })
-          $('#comment-num').html(result.data.length);
+          $('span.comment-num').html(result.data.length);
         }
       }
     })

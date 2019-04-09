@@ -15,7 +15,7 @@
 <div class="article-comment" id="article-comment">
   <input type="hidden" id="userInfo" value="{{userInfo._id}}">
   <div class="edit-comment-outBox"></div>
-  <h3 class="comment-num">(<span id="comment-num">0</span>)个小伙伴评论了</h3>
+  <h3 class="comment-num">(<span class="comment-num">0</span>)个小伙伴评论了</h3>
   <div class="comment-list">
     <ul id="comment-list">
 
@@ -32,7 +32,7 @@
       <li>作者：<%=user.username%></li>
       <li>发布时间：<%=addTime%></li>
       <li>浏览人数：<%=views%></li>
-      <li>评论：10</li>
+      <li>评论：<span class="comment-num"><%=comments%></span></li>
       <li>喜欢：<%=loves%></li>
     </ul>
   </nav>
@@ -55,7 +55,7 @@
         <img src="https://cuiqingcai.com/avatar/cd9c3f6176fdc9873eb3f0c4d0587736.png" alt="头像">
       </div>
       <div class="comment-cont">
-        <p class="comment-name"><%=username%>评论了：（时间：<%=createTime%>）</p>
+        <p class="comment-name"><%=user.username%>评论了：（时间：<%=createTime%>）</p>
         <p class="coment-content"><%=describe%></p>
         <p class="comment-reply"><a href="javascript:;" class="reply-btn" data-fid="<%=_id%>">回复</a></p>
       </div>

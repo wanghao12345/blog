@@ -190,10 +190,6 @@ router.post('/commit/article/comment', function (req, res, next) {
     describe: describe,
     createTime: createTime,
   }).save().then(function (result) {
-
-    console.log('result:' + result);
-
-
     User.findOne({_id: user}).then(function (user) {
       res.json({
         code: 0,
@@ -215,19 +211,14 @@ router.post('/commit/article/comment', function (req, res, next) {
  */
 router.get('/get/article/comment', function (req, res, next) {
   var id = req.query.id;
-  Comment.find({content: id}).then(function (comments) {
-    
-
-
-
+  Comment
+    .find({content: id})
+    .populate('user', 'username')
+    .then(function (comments) {
     res.json({
       code: 0,
       data: comments
     })
-
-
-
-
   });
 });
 
