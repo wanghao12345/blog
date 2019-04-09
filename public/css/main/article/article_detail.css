@@ -53,6 +53,71 @@
   font-size: 15px !important;
   line-height: 30px;
 }
+.article-operation{
+  width: 100%;
+  height: 80px;
+}
+.article-operation .operation-cont{
+  width: 340px;
+  height: 50px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+.article-operation .operation-cont .fabulous{
+  width: 150px;
+  height: 40px;
+  background-color: #ffc11b;
+  float: left;
+  margin-top: 5px;
+  position: relative;
+}
+.article-operation .operation-cont .fabulous:after{
+  width: 30px;
+  height: 50px;
+  content: '';
+  display: block;
+  position: absolute;
+  background-color: white;
+  right: -20px;
+  top: -5px;
+  border-radius: 50px 0 0 50px;
+}
+.article-operation .operation-cont .gratuity{
+  width: 50px;
+  height: 50px;
+  background-color: #3498db;
+  float: left;
+  border-radius: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-size: 16px;
+  color: white;
+  position: absolute;
+  left: 50%;
+  margin-left: -25px;
+  z-index: 2;
+}
+.article-operation .operation-cont .share{
+  width: 150px;
+  height: 40px;
+  background-color: #2fba87;
+  float: right;
+  margin-top: 5px;
+  position: relative;
+}
+.article-operation .operation-cont .share:after{
+  width: 30px;
+  height: 50px;
+  content: '';
+  display: block;
+  position: absolute;
+  background-color: white;
+  left: -20px;
+  top: -5px;
+  border-radius: 0px 50px 50px 0px;
+}
+
 .article-comment{
   border: 1px solid #d4d4d4;
   margin: 20px 0;
